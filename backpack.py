@@ -13,6 +13,8 @@ class container:
         pass
     def getName(self):
         return self.name
+    def getContents(self):
+        return self.contents
 class pens:
     def __init__(self, name):
         self.name = name

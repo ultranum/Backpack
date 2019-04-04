@@ -25,26 +25,34 @@ class pens:
         print(self.penList)
 
 def menu():
+    print(locker.getName())
+    print('-----')
+    for i in range(len(locker.contents)):
+        print(locker.contents[i])
+    print(backpack.getName())
+    print('-----')
+    for i in range(len(backpack.contents)):
+        print(backpack.contents[i])
+    print(pencilCase.getName())
+    print('-----')
+    for i in range(len(pencilCase.contents)):
+        print(pencilCase.contents[i])
     print('1) add an item')
     action = input('2) move an item ')
     if action == '1':
         print('Add Item')
         print('1) pens')
-        choice = input('2) dont use doesnt work')
+        choice = input('2) other ')
         if choice == '1':
             pens.addPen()
             print(pens.getPens())
 pens = pens()
 locker = container('locker')
 backpack = container('backpack')
-pencilCase = container('pencilCase')
+pencilCase = container('pencil case')
 
-
-print(locker.getName())
-
-locker.getContents()
-
-menu()
+while True:
+    menu()
 
 
 

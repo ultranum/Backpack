@@ -3,10 +3,10 @@ title: backpack multiday project
 author: garrett
 date created: 2019-04-02
 '''
-class container:
+class locker:
     def __init__(self, name):
         self.name = name
-        self.contents = []
+        self.contents = ['binder1', 'pen']
     def addItem(self):
         self.contents.append(input('new item > '))
     def moveItem(self):
@@ -15,6 +15,33 @@ class container:
         return self.name
     def getContents(self):
         print('%s: %s' %(self.name, self.contents))
+
+class backpack:
+    def __init__(self, name):
+        self.name = name
+        self.contents = ['computer']
+    def addItem(self):
+        self.contents.append(input('new item > '))
+    def moveItem(self):
+        pass
+    def getName(self):
+        return self.name
+    def getContents(self):
+        print('%s: %s' %(self.name, self.contents))
+
+class pencilcase:
+    def __init__(self, name):
+        self.name = name
+        self.contents = ['calc']
+    def addItem(self):
+        self.contents.append(input('new item > '))
+    def moveItem(self):
+        pass
+    def getName(self):
+        return self.name
+    def getContents(self):
+        print('%s: %s' %(self.name, self.contents))
+
 
 class pens:
     def __init__(self):
@@ -29,27 +56,36 @@ def menu():
     print('-----')
     for i in range(len(locker.contents)):
         print(locker.contents[i])
+    print(' ')
     print(backpack.getName())
     print('-----')
     for i in range(len(backpack.contents)):
         print(backpack.contents[i])
+    print(' ')
     print(pencilCase.getName())
     print('-----')
     for i in range(len(pencilCase.contents)):
         print(pencilCase.contents[i])
-    print('1) add an item')
-    action = input('2) move an item ')
+    print(' ')
+    print('''
+1) add an item
+2) move an item
+    ''')
+    action = input('> ')
     if action == '1':
-        print('Add Item')
-        print('1) pens')
-        choice = input('2) other ')
+        print('''
+Add Item
+1) stuff
+2) other 
+        ''')
+        choice = input('> ')
         if choice == '1':
-            pens.addPen()
-            print(pens.getPens())
+            locker.addItem()
+
 pens = pens()
-locker = container('locker')
-backpack = container('backpack')
-pencilCase = container('pencil case')
+locker = locker('locker')
+backpack = backpack('backpack')
+pencilCase = pencilcase('pencil case')
 
 while True:
     menu()

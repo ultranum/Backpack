@@ -6,7 +6,7 @@ date created: 2019-04-02
 class locker:
     def __init__(self, name):
         self.name = name
-        self.contents = ['binder1', 'pen']
+        self.contents = []
     def addItem(self):
         self.contents.append(input('new item > '))
     def moveItem(self):
@@ -19,7 +19,7 @@ class locker:
 class backpack:
     def __init__(self, name):
         self.name = name
-        self.contents = ['computer']
+        self.contents = []
     def addItem(self):
         self.contents.append(input('new item > '))
     def moveItem(self):
@@ -32,7 +32,7 @@ class backpack:
 class pencilcase:
     def __init__(self, name):
         self.name = name
-        self.contents = ['calc']
+        self.contents = []
     def addItem(self):
         self.contents.append(input('new item > '))
     def moveItem(self):
@@ -52,6 +52,7 @@ class pens:
         print(self.penList)
 
 def menu():
+    allItems = [pens.penList]
     print(locker.getName())
     print('-----')
     for i in range(len(locker.contents)):
@@ -75,13 +76,16 @@ def menu():
     if action == '1':
         print('''
 Add Item
-1) stuff
+1) pen
 2) other 
         ''')
         choice = input('> ')
         if choice == '1':
-            locker.addItem()
-
+            pens.addPen()
+    elif action == '2':
+        for i in range(len(allItems)):
+            for j in range(len(allItems[i])):
+                print(allItems[i][j])
 pens = pens()
 locker = locker('locker')
 backpack = backpack('backpack')

@@ -3,6 +3,7 @@ title: backpack multiday project
 author: garrett
 date created: 2019-04-02
 '''
+
 class locker:
     def __init__(self, name):
         self.name = name
@@ -43,16 +44,18 @@ class pencilcase:
         print('%s: %s' %(self.name, self.contents))
 
 
-class pens:
+class items:
     def __init__(self):
-        self.penList = []
-    def addPen(self):
-        return self.penList.append(input('color ') + ' pen')
-    def getPens(self):
-        print(self.penList)
+        self.name = " "
+
+    def addItem(self):
+        self.name = input('add an item')
+
+    def getName(self):
+        return self.name
 
 def menu():
-    allItems = [pens.penList]
+
     print(locker.getName())
     print('-----')
     for i in range(len(locker.contents)):
@@ -74,22 +77,38 @@ def menu():
     ''')
     action = input('> ')
     if action == '1':
-        print('''
-Add Item
-1) pen
-2) other 
-        ''')
-        choice = input('> ')
-        if choice == '1':
-            pens.addPen()
-    elif action == '2':
+        newItem = items()
+        newItem.addItem()
+        allItems.append(newItem.getName())
+        locker.contents.append(newItem.getName())
+    if action == '2':
+        count = -1
         for i in range(len(allItems)):
-            for j in range(len(allItems[i])):
-                print(allItems[i][j])
-pens = pens()
+            if isinstance(allItems[i], list):
+                for j in range(len(allItems[i])):
+                    count += 1
+                    print(str(count) + ": " + str(allItems[i][j]))
+            else:
+                count += 1
+                print(str(count) + ": " + str(allItems[i]))
+
+        itemchoice = int(input('what item number? '))
+        if isinstance(allItems[itemchoice], list):
+        print(allItems[itemchoice])
+        print('move where?')
+
+
+
+allItems = []
 locker = locker('locker')
+locker.contents = ['binders', 'jacket']
 backpack = backpack('backpack')
+backpack.contents = ['pencil case', 'laptop']
 pencilCase = pencilcase('pencil case')
+pencilCase.contents = ['pencil', 'pen']
+allItems.append(locker.contents)
+allItems.append(backpack.contents)
+allItems.append(pencilCase.contents)
 
 while True:
     menu()

@@ -4,145 +4,88 @@ author: garrett
 date created: 2019-04-02
 '''
 
-class locker:
+class holding:
     def __init__(self, name):
         self.name = name
         self.contents = []
-    def addItem(self):
-        self.contents.append(input('new item > '))
-    def moveItem(self):
-        pass
-    def getName(self):
-        return self.name
-    def getContents(self):
-        print('%s: %s' %(self.name, self.contents))
 
-class backpack:
-    def __init__(self, name):
-        self.name = name
-        self.contents = []
-    def addItem(self):
-        self.contents.append(input('new item > '))
-    def moveItem(self):
-        pass
-    def getName(self):
-        return self.name
-    def getContents(self):
-        print('%s: %s' %(self.name, self.contents))
+    def addItem(self, obj):
+        self.contents.append(obj)
 
-class pencilcase:
-    def __init__(self, name):
-        self.name = name
-        self.contents = []
-    def addItem(self):
-        self.contents.append(input('new item > '))
-    def moveItem(self):
-        pass
-    def getName(self):
-        return self.name
-    def getContents(self):
-        print('%s: %s' %(self.name, self.contents))
+    def getItems(self):
+        return self.contents
 
-
-class items:
-    def __init__(self):
-        self.name = " "
-
-    def addItem(self):
-        self.name = input('add an item')
-
-    def getName(self):
-        return self.name
-
-def menu():
-
-    print(locker.getName())
-    print('-----')
-    for i in range(len(locker.contents)):
-        print(locker.contents[i])
-    print(' ')
-    print(backpack.getName())
-    print('-----')
-    for i in range(len(backpack.contents)):
-        print(backpack.contents[i])
-    print(' ')
-    print(pencilCase.getName())
-    print('-----')
-    for i in range(len(pencilCase.contents)):
-        print(pencilCase.contents[i])
-    print(' ')
-    print('''
-1) add an item
-2) move an item
-    ''')
-    action = input('> ')
-    if action == '1':
-        newItem = items()
-        newItem.addItem()
-        allItems.append(newItem.getName())
-        locker.contents.append(newItem.getName())
-    if action == '2':
-        count = -1
-        for i in range(len(allItems)):
-            if isinstance(allItems[i], list):
-                for j in range(len(allItems[i])):
-                    count += 1
-                    print(str(count) + ": " + str(allItems[i][j]))
-            else:
-                count += 1
-                print(str(count) + ": " + str(allItems[i]))
-
-        itemchoice = int(input('what item number? '))
-        if isinstance(allItems[itemchoice], list):
-        print(allItems[itemchoice])
-        print('move where?')
-
-
-
-allItems = []
-locker = locker('locker')
-locker.contents = ['binders', 'jacket']
-backpack = backpack('backpack')
-backpack.contents = ['pencil case', 'laptop']
-pencilCase = pencilcase('pencil case')
-pencilCase.contents = ['pencil', 'pen']
-allItems.append(locker.contents)
-allItems.append(backpack.contents)
-allItems.append(pencilCase.contents)
-
-while True:
-    menu()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class binder:
-    def __init__(self, name):
-        self.name = name
-
-
-class electronics:
-    def __init__(self, name):
-        self.name = name
-
+    def removeItems(self, num):
+        self.contents.pop(num)
 
 class notebook:
     def __init__(self, name):
         self.name = name
 
+    def __str__(self):
+        return ('%s notebook'%(self.name))
+
+    def __repr__(self):
+        return ('%s notebook' % (self.name))
+
+class pens:
+    def __init__(self, color):
+        self.color = color
+
+    def __str__(self):
+        return ('%s pen'%(self.color))
+
+    def __repr__(self):
+        return ('%s pen' % (self.color))
+
+class binder:
+    def __init__(self, subject):
+        self.subject = subject
+
+    def __str__(self):
+        return ('%s binder'%(self.subject))
+
+    def __repr__(self):
+        return ('%s binder' % (self.subject))
 
 class highlighter:
+    def __init__(self, color):
+        self.color = color
+
+    def __str__(self):
+        return ('%s highlighter'%(self.color))
+
+    def __repr__(self):
+        return ('%s highlighter' % (self.color))
+
+class misc:
     def __init__(self, name):
         self.name = name
+
+    def __str__(self):
+        return ('%s'%(self.name))
+
+    def __repr__(self):
+        return ('%s' % (self.name))
+
+tempval = None
+locker = holding('locker')
+bag = holding('bag')
+pencilCase = holding('pencil case')
+
+locker.addItem(pens('blue'))
+bag.addItem(notebook('english'))
+bag.addItem(pens('red'))
+
+print(locker.getItems())
+print(bag.getItems())
+
+for i in range(len(bag.getItems())):
+    print('%s: %s'%(i, bag.getItems()[i]))
+
+tempval = bag.getItems()[1]
+bag.removeItems(1)
+locker.addItem(tempval)
+
+print(locker.getItems())
+print(bag.getItems())

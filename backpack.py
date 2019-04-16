@@ -94,8 +94,8 @@ def menu():
 
         itemchoice = int(input('what item number? '))
         if isinstance(allItems[itemchoice], list):
-        print(allItems[itemchoice])
-        print('move where?')
+            print(allItems[itemchoice])
+            print('move where?')
 
 
 
@@ -113,36 +113,3 @@ allItems.append(pencilCase.contents)
 while True:
     menu()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class binder:
-    def __init__(self, name):
-        self.name = name
-
-
-class electronics:
-    def __init__(self, name):
-        self.name = name
-
-
-class notebook:
-    def __init__(self, name):
-        self.name = name
-
-
-class highlighter:
-    def __init__(self, name):
-        self.name = name

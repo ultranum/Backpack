@@ -63,29 +63,150 @@ class misc:
         self.name = name
 
     def __str__(self):
-        return ('%s'%(self.name))
+        return self.name
 
     def __repr__(self):
-        return ('%s' % (self.name))
+        return self.name
 
-tempval = None
-locker = holding('locker')
-bag = holding('bag')
-pencilCase = holding('pencil case')
+def menu():
+    print(locker.name)
+    print('-----')
+    for i in range(len(locker.getItems())):
+        print(locker.getItems()[i])
+    print('')
+    print(bag.name)
+    print('-----')
+    for i in range(len(bag.getItems())):
+        print(bag.getItems()[i])
+    print('')
+    print(pencilCase.name)
+    print('-----')
+    for i in range(len(pencilCase.getItems())):
+        print(pencilCase.getItems()[i])
+    print('')
+    print('''
+Options:    
+1) Add an item
+2) Move an item
+    ''')
+    choice = int(input('> ')) # User input choice of action
+## Adding Items section
+    if choice == 1:
+        print('''
+Add what?
+1) notebook
+2) pen
+3) binder
+4) highlighter
+5) other
+''')
+        item = int(input('>'))
+        if item is 1 or 3:
+            return locker.addItem(addOptions[item](input('Subject: ')))
+        elif item is 2 or 4:
+            return locker.addItem(addOptions[item](input('Color: ')))
+        elif item is 5:
+            return locker.addItem(addOptions[item](input('Name: ')))
+        else:
+            print('invalid item')
+### Moving items section
+
+    elif choice == 2:
+        print('''
+From where?
+1) Locker
+2) Bag
+3) Pencil Case
+        ''')
+        moveLocation = int(input('> '))
+        if moveLocation == 1:
+            print('Move What?')
+            for i in range(len(locker.getItems())):
+                print('%s: %s' %(i, locker.getItems()[i]))
+                tempNum = int(input('> '))
+                tempval = locker.getItems()[tempNum] # when moving an item, the item being moved is placed here
+                print('''
+To where?
+1) Bag
+2) Pencil Case
+                        ''')
+                moving = int(input('> '))
+                if moving == 1:
+                    locker.removeItems(tempNum)
+                    bag.addItem(tempval)
+
+                elif moving == 2:
+                    locker.removeItems(tempNum)
+                    pencilCase.addItem(tempval)
+
+        elif moveLocation == 2:
+            print('Move What?')
+            for j in range(len(bag.getItems())):
+                print('%s: %s' % (j, bag.getItems()[j]))
+                tempNum = int(input('> '))
+                tempval = bag.getItems()[tempNum]  # when moving an item, the item being moved is placed here
+                print('''
+To where?
+1) Locker
+2) Pencil Case
+                        ''')
+                moving = int(input('> '))
+                if moving == 1:
+                    bag.removeItems(tempNum)
+                    locker.addItem(tempval)
+
+                elif moving == 2:
+                    bag.removeItems(tempNum)
+                    pencilCase.addItem(tempval)
+
+        elif moveLocation == 3:
+            print('Move What?')
+            for k in range(len(pencilCase.getItems())):
+                print('%s: %s' % (k, pencilCase.getItems()[k]))
+                tempNum = int(input('> '))
+                tempval = pencilCase.getItems()[tempNum]  # when moving an item, the item being moved is placed here
+                print('''
+To where?
+1) Locker
+2) Bag
+                        ''')
+                moving = int(input('> '))
+                if moving == 1:
+                    pencilCase.removeItems(tempNum)
+                    locker.addItem(tempval)
+
+                elif moving == 2:
+                    pencilCase.removeItems(tempNum)
+                    bag.addItem(tempval)
+
+
+
+### CODE STARTS HERE
+locker = holding('Locker')
+bag = holding('Bag')
+pencilCase = holding('Pencil case')
+
+addOptions = {
+     1 : notebook,
+     2 : pens,
+     3 : binder,
+     4 : highlighter,
+     5 : misc
+}
+
 
 locker.addItem(pens('blue'))
 bag.addItem(notebook('english'))
 bag.addItem(pens('red'))
+while True:
+    menu()
 
-print(locker.getItems())
-print(bag.getItems())
-
-for i in range(len(bag.getItems())):
-    print('%s: %s'%(i, bag.getItems()[i]))
-
-tempval = bag.getItems()[1]
-bag.removeItems(1)
-locker.addItem(tempval)
-
-print(locker.getItems())
-print(bag.getItems())
+# for i in range(len(bag.getItems())):
+#     print('%s: %s'%(i, bag.getItems()[i]))
+#
+# tempval = bag.getItems()[1]
+# bag.removeItems(1)
+# locker.addItem(tempval)
+#
+# print(locker.getItems())
+# print(bag.getItems())

@@ -18,6 +18,9 @@ class holding:
     def removeItems(self, num):
         self.contents.pop(num)
 
+    def getName(self):
+        return self.name
+
 class notebook:
     def __init__(self, name):
         self.name = name
@@ -112,72 +115,100 @@ Add what?
 ### Moving items section
 
     elif choice == 2:
-        print('''
-From where?
-1) Locker
-2) Bag
-3) Pencil Case
-        ''')
-        moveLocation = int(input('> '))
-        if moveLocation == 1:
-            print('Move What?')
-            for i in range(len(locker.getItems())):
-                print('%s: %s' %(i, locker.getItems()[i]))
-                tempNum = int(input('> '))
-                tempval = locker.getItems()[tempNum] # when moving an item, the item being moved is placed here
-                print('''
-To where?
-1) Bag
-2) Pencil Case
-                        ''')
-                moving = int(input('> '))
-                if moving == 1:
-                    locker.removeItems(tempNum)
-                    bag.addItem(tempval)
+        temp = []
+        temp2 = []
+        temp.append(locker.getItems())
+        temp.append(bag.getItems())
+        temp.append(pencilCase.getItems())
+        print(temp)
+        count = 0
+        for i in range(len(temp)):
+            for j in range(len(temp[i])):
+                temp2.append(temp[i][j])
+            count += 1
+            print('%s: %s'%(count, temp2[i]))
+        numb = int(input('number'))-1
+        if temp2[numb] in locker.getItems():
+            print('%s is in %s'%(temp2[numb], locker.getName()))
 
-                elif moving == 2:
-                    locker.removeItems(tempNum)
-                    pencilCase.addItem(tempval)
+        elif temp2[numb] in bag.getItems():
+            print('%s is in %s'%(temp2[numb], bag.getName()))
 
-        elif moveLocation == 2:
-            print('Move What?')
-            for j in range(len(bag.getItems())):
-                print('%s: %s' % (j, bag.getItems()[j]))
-                tempNum = int(input('> '))
-                tempval = bag.getItems()[tempNum]  # when moving an item, the item being moved is placed here
-                print('''
-To where?
-1) Locker
-2) Pencil Case
-                        ''')
-                moving = int(input('> '))
-                if moving == 1:
-                    bag.removeItems(tempNum)
-                    locker.addItem(tempval)
+        elif temp2[numb] in pencilCase.getItems():
+            print('%s is in %s'%(temp2[numb], pencilCase.getName()))
 
-                elif moving == 2:
-                    bag.removeItems(tempNum)
-                    pencilCase.addItem(tempval)
+        print('''move where
+        1) locker
+        2) bag
+        3) pencil case''')
 
-        elif moveLocation == 3:
-            print('Move What?')
-            for k in range(len(pencilCase.getItems())):
-                print('%s: %s' % (k, pencilCase.getItems()[k]))
-                tempNum = int(input('> '))
-                tempval = pencilCase.getItems()[tempNum]  # when moving an item, the item being moved is placed here
-                print('''
-To where?
-1) Locker
-2) Bag
-                        ''')
-                moving = int(input('> '))
-                if moving == 1:
-                    pencilCase.removeItems(tempNum)
-                    locker.addItem(tempval)
 
-                elif moving == 2:
-                    pencilCase.removeItems(tempNum)
-                    bag.addItem(tempval)
+#         print('' From where?
+# 1) Locker
+# 2) Bag
+# 3) Pencil Case
+#         ''')
+#         moveLocation = int(input('> '))
+#         if moveLocation == 1:
+#             print('Move What?')
+#             for i in range(len(locker.getItems())):
+#                 print('%s: %s' %(i, locker.getItems()[i]))
+#                 tempNum = int(input('> '))
+#                 tempval = locker.getItems()[tempNum] # when moving an item, the item being moved is placed here
+#                 print('''
+# To where?
+# 1) Bag
+# 2) Pencil Case
+#                         ''')
+#                 moving = int(input('> '))
+#                 if moving == 1:
+#                     locker.removeItems(tempNum)
+#                     bag.addItem(tempval)
+#
+#                 elif moving == 2:
+#                     locker.removeItems(tempNum)
+#                     pencilCase.addItem(tempval)
+#
+#         elif moveLocation == 2:
+#
+#             print('Move What?')
+#             for j in range(len(bag.getItems())):
+#                 print('%s: %s' % (j, bag.getItems()[j]))
+#                 tempNum = int(input('> '))
+#                 tempval = bag.getItems()[tempNum]  # when moving an item, the item being moved is placed here
+#                 print('''
+# To where?
+# 1) Locker
+# 2) Pencil Case
+#                         ''')
+#                 moving = int(input('> '))
+#                 if moving == 1:
+#                     bag.removeItems(tempNum)
+#                     locker.addItem(tempval)
+#
+#                 elif moving == 2:
+#                     bag.removeItems(tempNum)
+#                     pencilCase.addItem(tempval)
+#
+#         elif moveLocation == 3:
+#             print('Move What?')
+#             for k in range(len(pencilCase.getItems())):
+#                 print('%s: %s' % (k, pencilCase.getItems()[k]))
+#                 tempNum = int(input('> '))
+#                 tempval = pencilCase.getItems()[tempNum]  # when moving an item, the item being moved is placed here
+#                 print('''
+# To where?
+# 1) Locker
+# 2) Bag
+#                         ''')
+#                 moving = int(input('> '))
+#                 if moving == 1:
+#                     pencilCase.removeItems(tempNum)
+#                     locker.addItem(tempval)
+#
+#                 elif moving == 2:
+#                     pencilCase.removeItems(tempNum)
+#                     bag.addItem(tempval)
 
 
 

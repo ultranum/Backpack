@@ -104,11 +104,11 @@ Add what?
 5) other
 ''')
         item = int(input('>'))
-        if item is 1 or 3:
+        if item == 1 or 3:
             return locker.addItem(addOptions[item](input('Subject: ')))
-        elif item is 2 or 4:
+        elif item == 2 or 4:
             return locker.addItem(addOptions[item](input('Color: ')))
-        elif item is 5:
+        elif item == 5:
             return locker.addItem(addOptions[item](input('Name: ')))
         else:
             print('invalid item')
@@ -116,7 +116,7 @@ Add what?
 
     elif choice == 2:
         temp = []
-        temp2 = []
+        temp2 = [] #Both temp variables hold items being moved
         temp.append(locker.getItems())
         temp.append(bag.getItems())
         temp.append(pencilCase.getItems())

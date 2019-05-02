@@ -120,8 +120,8 @@ Add what?
         temp = locker.getItems() + bag.getItems() + pencilCase.getItems() # Collects all the items from the three containers
         holdingitem = None # The item being held temporarily
         for i in range(len(temp)):
-            print('%s: %s'%(i, temp[i]))
-        numb = int(input('number '))
+            print('%s: %s'%(i+1, temp[i]))
+        numb = int(input('number '))-1
 
         ## IF ITEM IS IN LOCKER
         if temp[numb] in locker.getItems():
